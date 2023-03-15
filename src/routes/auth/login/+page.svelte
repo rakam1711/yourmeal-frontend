@@ -1,13 +1,7 @@
 <script lang="ts">
   /** @type {import('./$types').PageData} */
-  interface Form {
-    data: {
-      success: boolean
-      message: string
-    }
-  }
 
-  export let form:Form
+  export let form:any
 </script>
 
 <div class="section is-medium has-text-centered">
@@ -30,9 +24,9 @@
           <button class="button is-dark" type="submit">Log In</button>
         </div>
       </div>
-      { #if !form?.data.success }
+      { #if form && !form?.data.success }
         <p>{form?.data.message}</p>
-      {/if}
+      { /if }
     </form>
     <div class="column is-1-tablet is-3-desktop"></div>
   </div>

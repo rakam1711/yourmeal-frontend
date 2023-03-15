@@ -1,10 +1,11 @@
+// @ts-nocheck
 import axios from 'axios'
 import { SERVER_URL } from '$lib/server/secrets'
 import { redirect } from '@sveltejs/kit'
 
-/** @type {import('./$types').Actions} */
+/** */
 export const actions = {
-  default: async ({cookies, request}) => {
+  default:/** @param {import('./$types').RequestEvent} event */  async ({cookies, request}) => {
     const formData = await request.formData()
     const data = Object.fromEntries([...formData])
   

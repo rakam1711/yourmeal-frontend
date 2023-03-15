@@ -4,7 +4,6 @@
   let menuOpen = false
   const toggleMenu = () => {
     menuOpen = !menuOpen
-    console.log(menuOpen)
   }
 </script>
 
