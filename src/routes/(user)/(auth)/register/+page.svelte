@@ -1,13 +1,13 @@
 <form action="" method="post" class="flex flex-col">
   <input 
     type="text"
-    name="firstName"
+    name="firstname"
     placeholder="First Name" 
     class="input input-bordered input-primary w-full max-w-xs my-2" 
   />
   <input 
     type="text"
-    name="lastName"
+    name="lastname"
     placeholder="Last Name" 
     class="input input-bordered input-primary w-full max-w-xs my-2" 
   />
