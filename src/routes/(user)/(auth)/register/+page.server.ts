@@ -20,8 +20,7 @@ export const actions: Actions = {
           firstname, 
           lastname, 
           email, 
-          password, 
-          confirmPassword, 
+          password,
           phone 
         }
       }) 
@@ -31,7 +30,6 @@ export const actions: Actions = {
       console.error(error)
     }
 
-    
     return {
 
     }
