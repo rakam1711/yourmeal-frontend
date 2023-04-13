@@ -10,3 +10,4 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 yarn.lock
 yarn-error.log
+pnpm-lock.yaml
