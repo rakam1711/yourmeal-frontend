@@ -1,5 +1,5 @@
 import type { Actions } from './$types'
-import { BACKEND_URL } from '$lib/server/constants'
+import { env } from '$env/dynamic/private'
 import { error } from '@sveltejs/kit'
 import axios from 'axios'
 
@@ -14,14 +14,14 @@ export const actions: Actions = {
 
     try {
       const res = await axios({
-        url: `${BACKEND_URL}user/register`,
+        url: `${env.BACKEND_SERVER_URL}user/register`,
         method: 'post',
         data: {
-          firstname, 
-          lastname, 
-          email, 
+          firstname,
+          lastname,
+          email,
           password,
-          phone 
+          phone
         }
       }) 
 
