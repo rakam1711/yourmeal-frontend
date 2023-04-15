@@ -1,4 +1,29 @@
-<form action="" method="post" class="flex flex-col">
+<script lang="ts">
+  import { 
+    enhance, 
+    applyAction, 
+    type SubmitFunction
+  } from '$app/forms'
+  import type { ActionData } from './$types'
+
+  export let form: any
+
+  const handleRegister: SubmitFunction = () => {
+    return async ({ result }) => {
+      await applyAction(result)
+    }
+  }
+</script>
+
+<form 
+  action="" 
+  method="post" 
+  class="flex flex-col"
+  use:enhance={handleRegister}
+>  
+  {#if form?.errors.length > 0}
+    <p class="text-red-600">{form?.errors[0]}</p>
+  {/if}
   <input 
     type="text"
     name="firstname"
@@ -37,4 +62,5 @@
   />
 
   <button class="btn btn-secondary w-full max-w-xs my-2">Register</button>
+
 </form>

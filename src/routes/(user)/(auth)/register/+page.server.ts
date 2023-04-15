@@ -4,7 +4,8 @@ import { error } from '@sveltejs/kit'
 import axios from 'axios'
 
 export const actions: Actions = {
-  default: async ({cookies, request}) => {
+  default: async ({request, cookies}) => {
+
     const data = Object.fromEntries([...(await request.formData())])
     const { firstname, lastname, email, password, confirmPassword, phone } = data
 
@@ -23,15 +24,24 @@ export const actions: Actions = {
           password,
           phone
         }
-      }) 
+      })
 
       console.log(res.data)
+
+      if(res && res.data && res.data.errors.length < 1) {
+        cookies.set('token', res.data.data.token, {
+          expires: new Date(Date.now() + 3 * 24 * 60 * 60),
+          secure: true,
+          sameSite: true,
+          httpOnly: true
+        })
+      }
+
+      return { 
+        ...res.data
+      }
     } catch (error) {
       console.error(error)
-    }
-
-    return {
-
     }
   }
 }
