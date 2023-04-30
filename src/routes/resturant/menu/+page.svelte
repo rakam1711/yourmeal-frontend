@@ -15,12 +15,12 @@
 	{#if form && form.success}
 		<div>
 			<img src={form.data.item.thumbnail} />
-			<!-- name: {form.data.name}
+			name: {form.data.name}
 			description: {form.data.description}
 			price: {form.data.price}
 			quantity: {form.data.quantity}
 			category: {form.data.category}
-			tags: {form.data.tags} -->
+			tags: {form.data.tags}
 		</div>
 	{/if}
 
