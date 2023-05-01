@@ -6,15 +6,9 @@ export const actions: Actions = {
 	default: async ({ request, cookies }) => {
 		const data = Object.fromEntries([...(await request.formData())])
 
-		const token = cookies.get('token')
-		console.log(token, env.BACKEND_SERVER_URL)
-
 		const res = await axios({
 			url: `${env.BACKEND_SERVER_URL}resturant/menu/add`,
 			method: 'post',
-			headers: {
-				Authorization: `Bearer ${token}`
-			},
 			data
 		})
 
