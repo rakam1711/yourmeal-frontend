@@ -1,20 +1,20 @@
 <script lang="ts">
-	import { enhance, applyAction, type SubmitFunction } from '$app/forms';
-	export let form: any;
+	import { enhance, applyAction, type SubmitFunction } from '$app/forms'
+	export let form: any
 
 	const handleAddItem: SubmitFunction = () => {
 		return async ({ result }) => {
-			console.log(result);
-			await applyAction(result);
-		};
-	};
-	console.log(form);
+			console.log(result)
+			await applyAction(result)
+		}
+	}
+	console.log(form)
 </script>
 
 <div class="p4 grid">
 	{#if form && form.success}
 		<div>
-			<img src={form.data.item.thumbnail} />
+			<img src={form.data.item.thumbnail} alt="" />
 			name: {form.data.name}
 			description: {form.data.description}
 			price: {form.data.price}

@@ -5,7 +5,6 @@ import axios from 'axios'
 export const actions: Actions = {
 	default: async ({ request, cookies }) => {
 		const data = Object.fromEntries([...(await request.formData())])
-		// const { name, description, thumbnail, price, quantity, tags } = data
 
 		const token = cookies.get('token')
 		console.log(token, env.BACKEND_SERVER_URL)
