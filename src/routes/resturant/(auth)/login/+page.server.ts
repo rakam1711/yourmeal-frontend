@@ -1,7 +1,7 @@
 import type { Actions } from './$types'
 import { env } from '$env/dynamic/private'
-import axios from 'axios'
 import { redirect } from '@sveltejs/kit'
+import axios from 'axios'
 
 export const actions: Actions = {
 	default: async ({ request, cookies }) => {
