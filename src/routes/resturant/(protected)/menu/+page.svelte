@@ -1,23 +1,31 @@
 <script lang="ts">
 	import { enhance, applyAction, type SubmitFunction } from '$app/forms'
-	import Card from '$lib/components/Card.svelte'
+	import Card from '$lib/components/resturant/Card.svelte'
 
 	let addNewItem = false
 
-	export let form: any
+	export let data: any
 
-	const handleAddItem: SubmitFunction = () => {
+	let items: any[] = data.data.items
+
+	const handleAddItem: SubmitFunction = ({ action, data }) => {
 		addNewItem = false
+		const response = Object.fromEntries(data)
+
+		items = [...items, response]
+
 		return async ({ result }) => {
 			await applyAction(result)
 		}
 	}
 </script>
 
-<div class="p4 grid relative w-full h-full">
-	{#if form && form.success}
-		<Card item={form.data.item} />
-	{/if}
+<div class="px-24 py-16 flex flex-col relative w-full h-full">
+	<div class="grid grid-cols-3 gap-0.5">
+		{#each data.data.items as item}
+			<Card {item} />
+		{/each}
+	</div>
 
 	<label for="add-item-form" class="btn">Add New Item</label>
 

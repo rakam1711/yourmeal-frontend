@@ -1,6 +1,6 @@
 import type { Actions } from './$types'
-import { env } from '$env/dynamic/private'
-import { error, redirect } from '@sveltejs/kit'
+import { PUBLIC_BACKEND_SERVER_URL } from '$env/static/public'
+import { redirect } from '@sveltejs/kit'
 import axios from 'axios'
 
 export const actions: Actions = {
@@ -9,7 +9,7 @@ export const actions: Actions = {
 		const { email, password } = data
 
 		const res = await axios({
-			url: `${env.BACKEND_SERVER_URL}user/login`,
+			url: `${PUBLIC_BACKEND_SERVER_URL}user/login`,
 			method: 'post',
 			data: {
 				email,
@@ -18,7 +18,7 @@ export const actions: Actions = {
 		})
 
 		if (res && res.data && res.data.errors.length < 1) {
-			cookies.set('token', res.data.data.token, {
+			cookies.set('user_token', res.data.data.token, {
 				secure: true,
 				sameSite: true,
 				httpOnly: true,

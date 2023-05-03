@@ -1,4 +1,4 @@
-import { BACKEND_SERVER_URL } from '$env/static/private'
+import { PUBLIC_BACKEND_SERVER_URL } from '$env/static/public'
 import type { Cookies } from '@sveltejs/kit'
 import axios, { type AxiosResponse } from 'axios'
 
@@ -13,12 +13,10 @@ export const handleRequest = ({
 	data,
 	cookies
 }: HandleRequestOptions): Promise<AxiosResponse> => {
-	const token = cookies.get('token')
-
-	console.log(BACKEND_SERVER_URL + path)
+	const token: string | undefined = cookies?.get('token')
 
 	return axios({
-		url: BACKEND_SERVER_URL + path,
+		url: PUBLIC_BACKEND_SERVER_URL + path,
 		method: 'post',
 		headers: {
 			Authorization: `Bearer ${token}`

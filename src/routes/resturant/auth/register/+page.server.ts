@@ -1,5 +1,5 @@
 import type { Actions } from './$types'
-import { env } from '$env/dynamic/private'
+import { PUBLIC_BACKEND_SERVER_URL } from '$env/static/public'
 import axios from 'axios'
 import { redirect } from '@sveltejs/kit'
 
@@ -16,7 +16,7 @@ export const actions: Actions = {
 		const { name, email, password, description, image, address } = data
 
 		const res = await axios({
-			url: `${env.BACKEND_SERVER_URL}resturant/add`,
+			url: `${PUBLIC_BACKEND_SERVER_URL}resturant/add`,
 			method: 'post',
 			data: {
 				name,
@@ -32,12 +32,13 @@ export const actions: Actions = {
 
 		if (res && res.data && res.data.errors.length < 1) {
 			cookies.set('token', res.data.data.token, {
+				path: '/',
 				secure: true,
 				sameSite: true,
 				httpOnly: true,
 				maxAge: 60 * 60 * 24 * 3
 			})
-			throw redirect(304, 'home')
+			throw redirect(304, '../home')
 		} else if (res && res.data && res.data.errors.length > 0) {
 			return {
 				...res.data
